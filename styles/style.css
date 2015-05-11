@@ -1,0 +1,114 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  background-color: #282828;
+}
+
+.contents{
+  width: 1170px;
+  height: 710px;
+  margin: auto;
+  background-color: #282828;
+}
+
+.btn-intro{
+  position: relative;
+  top: 448px;
+  left: 462px;
+  width: 255px;
+  height: 60px;
+}
+
+#two_players{
+  position: relative;
+  top: 188px;
+  left: 278px;
+  width: 572px;
+  height: 194px;
+}
+
+#one_player{
+  position: relative;
+  top: 308px;
+  left: 278px;
+  width: 572px;
+  height: 194px;
+}
+
+#house1{
+  float: left;
+  position: relative;
+  top: 171px;
+  left: 9px;
+  width: 208px;
+  height: 270px;
+}
+
+#house2{
+  float: left;
+  position: relative;
+  top: 171px;
+  left: 122px;
+  width: 208px;
+  height: 270px;
+}
+
+#house3{
+  float: left;
+  position: relative;
+  top: 171px;
+  left: 240px;
+  width: 216px;
+  height: 270px;
+}
+
+#house4{
+  float: left;
+  position: relative;
+  top: 171px;
+  left: 314px;
+  width: 216px;
+  height: 270px;
+}
+
+.white{
+  background-image: url("../images/white.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+.black{
+  background-image: url("../images/black.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+.empty{
+  background-image: url("../images/cross.jpg");
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+table{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-spacing: 0px;
+}
+tr{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-spacing: 0px;
+}
+td{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-spacing: 0px;
+}

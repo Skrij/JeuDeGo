@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jeu de Go</title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body>
+    <div id="introduction" class="contents" style="background-image: url(images/intro.jpg); background-repeat: no-repeat; background-position: center;">
+      <div onclick="GoToPlayers()" class="btn-intro"></div>
+    </div>
+
+    <div id="players" class="contents" style="background-image: url(images/players.jpg); background-repeat: no-repeat; background-position: center; display:none">
+      <div id="two_players" onclick="GoToHouse(2)"></div>
+      <div id="one_player" onclick="GoToHouse(1)"></div>
+    </div>
+
+    <div id="house" class="contents" style="background-image: url(images/house1.jpg); background-repeat: no-repeat; background-position: center; display:none">
+      <div id="house1" onclick="OnSelectHouse(1)"></div>
+      <div id="house2" onclick="OnSelectHouse(2)"></div>
+      <div id="house3" onclick="OnSelectHouse(3)"></div>
+      <div id="house4" onclick="OnSelectHouse(4)"></div>
+    </div>
+
+    <div id="game" class="contents" style="background-color:#ffffff; display:none">
+      <div id="goban"></div>
+      <button type="button" onclick="SaveGame()">Sauvegarde</button>
+    </div>
+
+  	<script type="text/javascript" src="js/save.js"></script>
+  	<script type="text/javascript" src="js/goban.js"></script>
+    <script type="text/javascript" src="js/house.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+  	<script type="text/javascript" src="js/go.js"></script>
+  	<script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html> 
