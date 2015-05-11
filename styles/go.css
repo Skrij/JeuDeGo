@@ -1,0 +1,45 @@
+.white{
+  background-image: url("../images/white.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+.black{
+  background-image: url("../images/black.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+.empty{
+  background-image: url("../images/cross.jpg");
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+table{
+  position: relative;
+  top: 17px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-spacing: 0px;
+}
+
+tr{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-spacing: 0px;
+}
+
+td{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-spacing: 0px;
+}

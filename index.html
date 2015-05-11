@@ -1,40 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Jeu de Go</title>
+    <title>Jeu de Go - GoT</title>
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta name="description" content="Un jeu de Go basé sur l'univers de Game of Thrones">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="fonts/TrajanPro-Bold.otf" rel="stylesheet" type="text/css">
+    <link href="fonts/TrajanPro-Regular.otf" rel="stylesheet" type="text/css">
+    <link href="fonts/Gameofthrones.ttf" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/go.css">
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
   </head>
   <body>
-    <div id="introduction" class="contents" style="background-image: url(images/intro.jpg); background-repeat: no-repeat; background-position: center;">
-      <div onclick="GoToPlayers()" class="btn-intro"></div>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <div class="container">
+      <div class="row">
+
+        <div id="introduction" class= "accueil" style="margin-top: 18%">
+          <h1>GAME OF GO</h1>
+          <h3>QUAND ON JOUE AU JEU DES TRÔNES, SOIT ON GAGNE SOIT ON MEURT</h3>
+          <button class="buttonAccueil" onclick="GoToPlayers()">ENTREZ EN LICE !</button>
+        </div>
+
+        <div id="players" class="choiceGame" style="margin-top : 5%; display:none">
+          <h2>CHOISISSEZ VOTRE ADVERSAIRE</h2>
+          <h3>TOUS CEUX QUI NE SONT PAS NOUS SONT NOS ENNEMIS</h3>
+          <div class="playerVsPlayer" onclick="GoToHouse(2)">
+            <img src="images/noia.png" alt="icône joueurs" class="noai" />
+          </div>
+          <p class="separation"> OU </p>
+          <div class="playerVsAI" onclick="GoToHouse(1)">
+            <img src="images/ia.png" alt="icône joueur et ordinateur" class="noai" />
+          </div>
+        </div>
+
+        <div id="house" class="choiceHouse" style="margin-top : 5%; display:none">
+          <h2>CHOOSE YOUR HOUSE</h2>
+          <div class="allHouses">
+            <div id="gauche" class="house" onclick="OnSelectHouse(1)">
+              <p class="maison">TARGARYEN</p>
+              <p class="devise">FIRE AND BLOOD</p>
+            </div>
+            <div id="milieug" class="house" onclick="OnSelectHouse(2)">
+              <p class="maison">BARATHÉON</p>
+              <p class="devise">OURS IS FURY</p>
+            </div>
+            <div id="milieud" class="house" onclick="OnSelectHouse(3)">
+              <p class="maison">LANNISTER</p>
+              <p class="devise">HEAR ME ROAR</p>
+            </div>
+            <div id="droite" class="house" onclick="OnSelectHouse(4)">
+              <p class="maison">STARK</p>
+              <p class="devise">WINTER IS COMING</p>
+            </div> 
+          </div>
+        </div>
+
+        <div id="game" style="background-color:#ffffff; display:none">
+          <div id="goban"></div>
+          <button type="button" onclick="SaveGame()">Sauvegarde</button>
+        </div>
+
+      </div>
     </div>
 
-    <div id="players" class="contents" style="background-image: url(images/players.jpg); background-repeat: no-repeat; background-position: center; display:none">
-      <div id="two_players" onclick="GoToHouse(2)"></div>
-      <div id="one_player" onclick="GoToHouse(1)"></div>
-    </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-    <div id="house" class="contents" style="background-image: url(images/house1.jpg); background-repeat: no-repeat; background-position: center; display:none">
-      <div id="house1" onclick="OnSelectHouse(1)"></div>
-      <div id="house2" onclick="OnSelectHouse(2)"></div>
-      <div id="house3" onclick="OnSelectHouse(3)"></div>
-      <div id="house4" onclick="OnSelectHouse(4)"></div>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="scripts/main.js"></script> -->
+  	<script type="text/javascript" src="scripts/save.js"></script>
+  	<script type="text/javascript" src="scripts/goban.js"></script>
+    <script type="text/javascript" src="scripts/house.js"></script>
+    <script type="text/javascript" src="scripts/player.js"></script>
+  	<script type="text/javascript" src="scripts/go.js"></script>
+  	<script type="text/javascript" src="scripts/game.js"></script>
 
-    <div id="game" class="contents" style="background-color:#ffffff; display:none">
-      <div id="goban"></div>
-      <button type="button" onclick="SaveGame()">Sauvegarde</button>
-    </div>
-
-  	<script type="text/javascript" src="js/save.js"></script>
-  	<script type="text/javascript" src="js/goban.js"></script>
-    <script type="text/javascript" src="js/house.js"></script>
-    <script type="text/javascript" src="js/player.js"></script>
-  	<script type="text/javascript" src="js/go.js"></script>
-  	<script type="text/javascript" src="js/main.js"></script>
   </body>
-</html> 
+</html>
