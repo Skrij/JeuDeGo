@@ -9,6 +9,9 @@ function CPlayer()
 
   //Signal si le joueur est une IA ou non 
   this.IA = false;
+
+  //Vérifier si le joueur a passé son tour.
+  this.Passed = false;
 }
 
 /*

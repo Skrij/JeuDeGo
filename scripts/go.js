@@ -30,6 +30,9 @@ function CGoGame()
 
   //Partie avec les handicaps
   this.Handicaps = false;
+
+  //Nombre de pierre placée pour le handicap 
+  this.NbHandicap = 0;
 }
 
 /** La méthode met à jour le nombre de joueur
@@ -74,4 +77,38 @@ CGoGame.prototype.Play = function()
   this.Goban.Display();
 
   //Gestion des handicaps
+
+}
+
+/** La méthode gère le passage au joueur suivant sans avoir joué.
+
+  \return
+  La méthode ne retourne pas de valeur.
+*/
+CGoGame.prototype.Pass = function()
+{
+  //Si on est en mode handicap 
+    // S'il n'a placé qu'1 pierre, il doit en plcer au moins une autre (message d'erreur)
+    //sinon : passer au joueur blanc
+
+  // Sinon : 
+    //si les 2 joueurs ont passé leur tour (this.Players[0].Passed = true && this.Players[1].Passed = true)
+      //gérer la fin de la partie 
+      this.End();
+    //sinon : passer au prochain joueur 
+  window.alert("Bouh méchant t'as passé ton tour!");
+}
+
+/** La méthode gère la fin de la partie
+
+  \return
+  La méthode ne retourne pas de valeur.
+*/
+CGoGame.prototype.End = function()
+{
+  /*
+  Afficher les points et le vainqueur 
+  Arrêter la partie
+  Demander à l’utilisateur s’il souhaite rejouer
+  */
 }

@@ -117,20 +117,35 @@ function OnSelectHouse(iHouseNumber)
 */
 function OnStonePosition(iObjTD, iLine, iColumn)
 {
+  var Line = parseInt(iLine);
+  var Column = parseInt(iColumn);
   var NextPlayer = globGoGame.NextPlayer;
   
   //Vérifier si l’intersection est vide
-  if(globGoGame.Goban.CrossingIsEmpty(iLine, iColumn) == true)
+  if(globGoGame.Goban.CrossingIsEmpty(Line, Column) == true)
   {
-    globGoGame.Goban.StonePosition(NextPlayer, iObjTD, iLine, iColumn);
-
-    if(globGoGame.NextPlayer == 'n')
+    //Vérifier si l’emplacement est autorisé 
+    if(globGoGame.Goban.PositionAuthorized(NextPlayer, Line, Column) == true)
     {
-      globGoGame.NextPlayer = 'b';
+      //Positionner la pierre et mettre à jour la grille
+      globGoGame.Goban.StonePosition(NextPlayer, Line, Column);
+
+      //Réafficher la grille
+      globGoGame.Goban.Display();
+
+      //Changement de joueur 
+      if(globGoGame.NextPlayer == 'n')
+      {
+        globGoGame.NextPlayer = 'b';
+      }
+      else
+      {
+        globGoGame.NextPlayer = 'n';
+      }
     }
     else
     {
-      globGoGame.NextPlayer = 'n';
+      window.alert("Mouvement impossible (C'EST DU SUICIDE !!).");
     }
   }
   else
@@ -151,12 +166,22 @@ function SaveGame()
   globGoGame.Save.SaveData();
 }
 
-function fadeOut(id, speed)
+/** Fonction passe le tour du joueur en cour.
+
+  \return
+  La fonction ne retourne pas de valeur.
+*/
+function Pass()
 {
-    var s = document.getElementById(id).style;
- 
-    s.opacity = 1;
- 
-    (function fade() {(s.opacity-=.1)<.1?s.display="none":setTimeout(fade,speed)})();
- 
+  globGoGame.Pass();
+}
+
+/** Fonction gère l'abandon du joueur.
+
+  \return
+  La fonction ne retourne pas de valeur.
+*/
+function Abandon()
+{
+  
 }

@@ -113,8 +113,7 @@ CGoban.prototype.Display = function()
   htmlGrille.style.paddingTop = "17px";
   htmlGrille.style.marginLeft = "18px";
   htmlGrille.setAttribute("id","tab");
-   
-  //ObjSize = 50;
+
   parent.appendChild(htmlGrille);
 
   for (var i = 0; i < this.Size; i++) 
@@ -133,12 +132,7 @@ CGoban.prototype.Display = function()
       {
         htmlCellule.setAttribute("class","white");
       }
-      /*else
-      {
-        htmlCellule.setAttribute("class","empty");
-      }*/
-      
-      
+
       htmlCellule.setAttribute("onclick","OnStonePosition(this, "+i+", "+j+")");
       ObjSize = 33;
       htmlCellule.style.width = ObjSize+"px";
@@ -173,17 +167,145 @@ CGoban.prototype.CrossingIsEmpty = function(iLine, iColumn)
   return valret;
 }
 
+/** La fonction vérifie le joueur est autorisé à poser sa pierre à cette position.
+
+  \param [in] {string} iPlayer  Le joueur en cours ("n" ou "b").
+  \param [in] {int} iLine  Numéro de la ligne (débute à 0).
+  \param [in] {int} iColumn  Numéro de la colonne (débute à 0).
+
+  \return
+  La fonction retourne true si la position est autorisée sinon false.
+  \note
+  Sous-fonction de la fonction PositionAuthorised. 
+*/
+CGoban.prototype.PositionAuthorized = function(iPlayer, iLine, iColumn)
+{
+  var valret = true;
+  var opponent;
+
+  //Initialiser l'adversaire
+  if(iPlayer=="n")
+  {
+    opponent = "b";
+  }
+  else if(iPlayer=="b")
+  {
+    opponent = "n";
+  }
+  else
+  {
+    return false;
+  }
+
+  //Vérifier si la position est autorisée.
+
+  //Première ligne
+  if(iLine == 0)
+  {
+    if(iColumn == 0)
+    {
+      if ((this.Grid[iLine + 1][iColumn] == opponent) 
+        && (this.Grid[iLine][iColumn + 1] == opponent))
+      {
+        valret = false;
+      }
+    }
+    else if(iColumn == (this.Size-1))
+    {
+      if ((this.Grid[iLine + 1][iColumn] == opponent) 
+        && (this.Grid[iLine][iColumn - 1] == opponent))
+      {
+        valret = false;
+      }
+    }
+    else
+    {
+      if ((this.Grid[iLine + 1][iColumn] == opponent) 
+        && (this.Grid[iLine][iColumn - 1] == opponent)
+        && (this.Grid[iLine][iColumn + 1] == opponent))
+      {
+        valret = false;
+      }
+    }
+  }
+
+  //Dernière ligne
+  else if(iLine == (this.Size-1))
+  {
+    if(iColumn == 0)
+    {
+      if ((this.Grid[iLine - 1][iColumn] == opponent) 
+        && (this.Grid[iLine][iColumn + 1] == opponent))
+      {
+        valret = false;
+      }
+    }
+    else if(iColumn == (this.Size-1))
+    {
+      if ((this.Grid[iLine - 1][iColumn] == opponent) 
+        && (this.Grid[iLine][iColumn - 1] == opponent))
+      {
+        valret = false;
+      }
+    }
+    else
+    {
+      if ((this.Grid[iLine - 1][iColumn] == opponent) 
+        && (this.Grid[iLine][iColumn - 1] == opponent)
+        && (this.Grid[iLine][iColumn + 1] == opponent))
+      {
+        valret = false;
+      }
+    }
+  }
+
+  //Première colonne
+  else if(iColumn == 0)
+  {
+    if ((this.Grid[iLine - 1][iColumn] == opponent)
+      &&(this.Grid[iLine + 1][iColumn] == opponent) 
+      && (this.Grid[iLine][iColumn + 1] == opponent))
+    {
+      valret = false;
+    }
+  }  
+
+  //Dernière colonne
+  else if(iColumn == (this.Size-1))
+  {
+    if ((this.Grid[iLine - 1][iColumn] == opponent)
+      &&(this.Grid[iLine + 1][iColumn] == opponent) 
+      && (this.Grid[iLine][iColumn - 1] == opponent))
+    {
+      valret = false;
+    }
+  }
+   
+  //Cas général
+  else
+  {
+    if ((this.Grid[iLine -1][iColumn] == opponent) 
+      && (this.Grid[iLine + 1][iColumn] == opponent) 
+      && (this.Grid[iLine][iColumn - 1] == opponent)
+      && (this.Grid[iLine][iColumn + 1] == opponent))
+    {
+      valret = false;
+    }
+  }
+
+  return valret;
+}
+
 /** Fonction autorise la position d’une pierre ainsi que l’état de vie et de mort des pierres du plateau 
 
   \param [in] {string} iPlayer  Le joueur en cours.
-  \param [in] {obj} iObjTD  Cellute dans le tableau.
   \param [in] {int} iLine  Numéro de la ligne (débute à 0).
   \param [in] {int} iColumn  Numéro de la colonne (débute à 0).
 
   \return
   La fonction ne retourne pas de valeur.
 */
-CGoban.prototype.StonePosition = function(iPlayer,iObjTD, iLine, iColumn)
+CGoban.prototype.StonePosition = function(iPlayer, iLine, iColumn)
 {
   // Mettre à jour la grille et l'affichage
   if(this.Grid[iLine][iColumn] == " ")
@@ -191,12 +313,12 @@ CGoban.prototype.StonePosition = function(iPlayer,iObjTD, iLine, iColumn)
     if(iPlayer == 'n')
     {
       this.Grid[iLine][iColumn] = "n";
-      iObjTD.className = "black";
+      //iObjTD.className = "black";
     }
     else
     {
       this.Grid[iLine][iColumn] = "b";
-      iObjTD.className = "white";
+      //iObjTD.className = "white";
     }
   }
 }
